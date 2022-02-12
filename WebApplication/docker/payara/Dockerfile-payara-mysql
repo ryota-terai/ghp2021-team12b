@@ -1,0 +1,6 @@
+FROM payara/server-full
+
+COPY mysql-connector-java-8.0.22.jar /opt/payara/appserver/glassfish/domains/domain1/lib
+COPY setup_payara.sh /setup_payara.sh
+COPY glassfish-resources.xml /glassfish-resources.xml
+#RUN chmod +x /setup_payara.sh

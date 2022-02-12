@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        <h1>GHP2021-防災マップ</h1>
+        <br/>
+        <h:button outcome="/shelter" value="避難所一覧"/>
+        <hr />
+        <h:button outcome="/disasterPost" value="災害情報投稿画面"/>
+        <br />
+        <h:button outcome="/listUncheckedDisasterInformation" value="災害情報審査画面"/>
+        <br />
+        <h:button outcome="/listDisasterInformation" value="災害情報一覧"/>
+        <!--
+        <h:button outcome="/deviceStatus/List" value="Show All DeviceStatus Items"/>
+        -->
+    </h:body>
+
+</html>
+

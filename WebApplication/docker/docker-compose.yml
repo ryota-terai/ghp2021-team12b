@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  payara:
+    build:
+      context: ./payara
+      dockerfile: Dockerfile-payara-mysql
+    volumes:
+      - type: volume
+        source: payaradata
+        target: /opt/payara/appserver
+    ports:
+      - "14848:4848"
+      - "18080:8080"
+    networks:
+      - payara_network
+    depends_on:
+      - mysql
+  mysql:
+    image:  mysql:8.0.22
+    environment:
+      MYSQL_ROOT_PASSWORD: foobar
+    ports: 
+     - "23306:3306"
+    networks:
+      - payara_network
+
+networks:
+  payara_network:
+volumes:
+  payaradata:
