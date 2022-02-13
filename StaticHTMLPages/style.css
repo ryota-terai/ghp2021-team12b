@@ -8,11 +8,11 @@ body {
 #header {
     height: 5%;
     background-color: #55c500;
+    display: flex;
+    align-items: center;
 }
 #header-title{
-    height: 100%;
     color: #fff;
-    padding-top: 5px;
     padding-left: 10px;
 }
 /* 地図 */
