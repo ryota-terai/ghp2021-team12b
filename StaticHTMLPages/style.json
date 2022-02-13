@@ -292,6 +292,59 @@
       }
     },
     {
+      "id": "dosya-zisuberi",
+      "type": "raster",
+      "metadata": {"maputnik:comment": "土砂災害警戒区域（地すべり）"},
+      "source": "dosya-zisuberi",
+      "minzoom": 2,
+      "layout": {"visibility": "visible"},
+      "paint": {"raster-opacity": 0.6}
+    },
+    {
+      "id": "toukai-hanran",
+      "type": "raster",
+      "metadata": {"maputnik:comment": "家屋倒壊等氾濫想定区域（氾濫流）"},
+      "source": "toukai-hanran",
+      "minzoom": 4,
+      "layout": {"visibility": "visible"},
+      "paint": {"raster-opacity": 0.6}
+    },
+    {
+      "id": "toukai-kagan",
+      "type": "raster",
+      "metadata": {"maputnik:comment": "家屋倒壊家屋倒壊等氾濫想定区域（河岸侵食）"},
+      "source": "toukai-kagan",
+      "minzoom": 4,
+      "layout": {"visibility": "visible"},
+      "paint": {"raster-opacity": 0.6}
+    },
+    {
+      "id": "kozui-saidai",
+      "type": "raster",
+      "metadata": {"maputnik:comment": "洪水浸水想定区域（想定最大規模）"},
+      "source": "kozui-saidai",
+      "minzoom": 2,
+      "paint": {"raster-opacity": 0.6}
+    },
+    {
+      "id": "dosya-doseki",
+      "type": "raster",
+      "metadata": {"maputnik:comment": "土砂災害警戒区域（土石流）"},
+      "source": "dosya-doseki",
+      "minzoom": 2,
+      "layout": {"visibility": "visible"},
+      "paint": {"raster-opacity": 0.6}
+    },
+    {
+      "id": "dosya-gake",
+      "type": "raster",
+      "metadata": {"maputnik:comment": "土砂災害警戒区域（急傾斜地の崩壊）"},
+      "source": "dosya-gake",
+      "minzoom": 2,
+      "layout": {"visibility": "visible"},
+      "paint": {"raster-opacity": 0.6}
+    },
+    {
       "id": "buildings3103",
       "type": "fill-extrusion",
       "source": "gsibv-vectortile-source-1-4-16",
@@ -1003,6 +1056,7 @@
         "text-halo-width": 1.2
       }
     },
+    
     {
       "id": "building-3d",
       "type": "fill-extrusion",
@@ -1027,65 +1081,6 @@
           "hsl(39, 41%, 86%)"
         ]
       }
-    },
-    {
-      "id": "dosya-zisuberi",
-      "type": "raster",
-      "metadata": {"maputnik:comment": "土砂災害警戒区域（地すべり）"},
-      "source": "dosya-zisuberi",
-      "minzoom": 2,
-      "maxzoom": 17,
-      "layout": {"visibility": "visible"},
-      "paint": {"raster-opacity": 0.6}
-    },
-    {
-      "id": "toukai-hanran",
-      "type": "raster",
-      "metadata": {"maputnik:comment": "家屋倒壊等氾濫想定区域（氾濫流）"},
-      "source": "toukai-hanran",
-      "minzoom": 4,
-      "maxzoom": 17,
-      "layout": {"visibility": "visible"},
-      "paint": {"raster-opacity": 0.6}
-    },
-    {
-      "id": "toukai-kagan",
-      "type": "raster",
-      "metadata": {"maputnik:comment": "家屋倒壊家屋倒壊等氾濫想定区域（河岸侵食）"},
-      "source": "toukai-kagan",
-      "minzoom": 4,
-      "maxzoom": 17,
-      "layout": {"visibility": "visible"},
-      "paint": {"raster-opacity": 0.6}
-    },
-    {
-      "id": "kozui-saidai",
-      "type": "raster",
-      "metadata": {"maputnik:comment": "洪水浸水想定区域（想定最大規模）"},
-      "source": "kozui-saidai",
-      "minzoom": 2,
-      "maxzoom": 17,
-      "paint": {"raster-opacity": 0.6}
-    },
-    {
-      "id": "dosya-doseki",
-      "type": "raster",
-      "metadata": {"maputnik:comment": "土砂災害警戒区域（土石流）"},
-      "source": "dosya-doseki",
-      "minzoom": 2,
-      "maxzoom": 17,
-      "layout": {"visibility": "visible"},
-      "paint": {"raster-opacity": 0.6}
-    },
-    {
-      "id": "dosya-gake",
-      "type": "raster",
-      "metadata": {"maputnik:comment": "土砂災害警戒区域（急傾斜地の崩壊）"},
-      "source": "dosya-gake",
-      "minzoom": 2,
-      "maxzoom": 17,
-      "layout": {"visibility": "visible"},
-      "paint": {"raster-opacity": 0.6}
     }
   ],
   "id": "aj6j3uopp"
