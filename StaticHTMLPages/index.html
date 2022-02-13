@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>3Dハザードマップ</title>
+    <meta name="description" content="ハザードマップです">
+    <link href="style.css" rel="stylesheet">
+    <!-- MapLibre -->
+    <link href='https://unpkg.com/maplibre-gl@2.1.1/dist/maplibre-gl.css' rel='stylesheet' />
+    <script src='https://unpkg.com/maplibre-gl@2.1.1/dist/maplibre-gl.js'></script>
+    <!-- Semantic-UI  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <div id="header">
+        <h2 id="header-title">3Dハザードマップ</h2>
+    </div>
+    <!-- 地図 -->
+    <div id="map-area">
+        <div id="sidebar" class="ui bottom attached segment pushable">
+            <div id="button-area" class="ui grey visible inverted left vertical sidebar menu">
+                <a class="item"><i class="home icon"></i>避難所一覧</a>
+                <a class="item"><i class="edit icon"></i>災害情報投稿</a>
+                <a class="item"><i class="tag icon"></i>災害情報審査</a>
+                <a class="item"><i class="comments icon"></i>災害情報一覧</a>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+    <!-- 避難所情報 -->
+    <div id="shelter-info">
+        <div class="ui icon message" id="shelter-info-textarea">
+            <i class="bullhorn icon"></i>
+            <div class="content">
+              <div class="header">避難所情報</div>
+              <p>この近くの避難所は、○○○○です。</p>
+            </div>
+          </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
