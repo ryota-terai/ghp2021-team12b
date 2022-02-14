@@ -17,7 +17,7 @@ body {
 }
 /* 地図 */
 #map-area {
-    height: 85%;
+    height: 70%;
     display: flex;
 }
 #map {
@@ -45,3 +45,11 @@ body {
 #shelter-info-textarea{
     height: 100%;
 }
+/* 凡例 */
+.wrap{	display:flex;
+		flex-wrap: wrap;
+		margin: 2px}
+.hanrei{font-size: 0.5rem;
+		text-align: center;
+		margin: 2px;
+		flex-basis: auto}

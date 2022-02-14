@@ -30,16 +30,35 @@
         </div>
         <div id="map"></div>
     </div>
-    <!-- 避難所情報 -->
-    <div id="shelter-info">
+	<div class="wrap">
+		<div class="hanrei">がけくずれ<br>
+			    <img src="data/gake.png" width="100" height="100" alt="土砂災害警戒区域がけくずれ"/>
+		</div>
+	  	<div class="hanrei">土石流<br>
+        <img src="data/dosekiryu.png" width="100" height="100" alt="土砂災害特別警戒区域土石流"/>
+		</div>
+	  	<div class="hanrei">地滑り<br>
+        <img src="data/zisuberi.png" width="100" height="100" alt="土砂災害特別警戒区域地滑り"/> </div>
+		<div class="hanrei">洪水で浸水する深さ<br>
+				<img src="data/shinsui.png" width="100" height="95" alt="洪水浸水想定区域の深さ">
+		</div>
+      	<div class="hanrei">洪水で河岸の家屋倒壊<br>
+				<img src="data/kaokutoukai_kagan.png" width="100" height="68" alt="家屋倒壊家屋倒壊等氾濫想定区域（河岸侵食）"/><br>
+	  	</div>
+		<div class="hanrei">川があふれて家屋倒壊<br>
+				<img src="data/kaokutoukai_hanran.png" width="100" height="68" alt="家屋倒壊等氾濫想定区域（氾濫流）"/><br>
+	  	</div>
+   </div>
+				    <!-- 避難所情報 -->
+<div id="shelter-info">
         <div class="ui icon message" id="shelter-info-textarea">
             <i class="bullhorn icon"></i>
             <div class="content">
               <div class="header">避難所情報</div>
               <p>この近くの避難所は、○○○○です。</p>
             </div>
-          </div>
-    </div>
+		</div>
+</div>
     <script src="index.js"></script>
 </body>
 </html>

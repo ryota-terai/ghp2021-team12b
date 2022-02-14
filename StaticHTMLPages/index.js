@@ -33,7 +33,7 @@ map.on('load', function () {
         'source': 'shelter_point',
         'layout': {},
         'paint': {
-            'circle-color': '#FF0000',
+            'circle-color': '#008000',
             'circle-radius': 5
         }   
     });
@@ -51,7 +51,7 @@ map.on('load', function () {
         'source': 'disaster',
         'layout': {},
         'paint': {
-            'circle-color': '#008000',
+            'circle-color': '#0000ff',
             'circle-radius': 5
         }   
     });
