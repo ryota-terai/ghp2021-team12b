@@ -7,6 +7,8 @@
     <h:head>
         <title>災害投稿情報確認</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
 
         <h:outputStylesheet name="css/map/style.css"/>
         <link rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' />
@@ -22,6 +24,22 @@
             <f:viewAction action="#{checkDisasterInformationBean.load()}" />
 
         </f:metadata>
+        <div class="card">
+            <h:form>
+                <p:growl id="messages"/>
+
+                <p:menubar>
+                    <p:menuitem value="ホーム" icon="pi pi-fw pi-arrow-circle-left" url="#{request.contextPath}/index.html"/>
+                    <p:menuitem value="避難所一覧" icon="pi pi-fw pi-home" url="#{request.contextPath}/faces/shelter.xhtml"/>
+
+                    <p:submenu label="災害情報" icon="pi pi-fw pi-comments">
+                        <p:menuitem value="投稿" icon="pi pi-fw pi-comment" url="#{request.contextPath}/faces/disasterPost.xhtml"/>
+                        <p:menuitem value="審査" icon="pi pi-fw pi-check" url="#{request.contextPath}/faces/listUncheckedDisasterInformation.xhtml"/>
+                        <p:menuitem value="一覧" icon="pi pi-fw pi-list" url="#{request.contextPath}/faces/listDisasterInformation.xhtml"/>
+                    </p:submenu>
+                </p:menubar>
+            </h:form>
+        </div>
         <h1>災害投稿情報確認</h1>
         <div id="map" />
         <h:form id="frm">

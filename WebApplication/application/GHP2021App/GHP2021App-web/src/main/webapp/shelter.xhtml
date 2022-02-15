@@ -7,6 +7,8 @@
     <h:head>
         <title>避難所</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
     </h:head>
     <style type="text/css">
         .ui-paginator a {
@@ -14,6 +16,22 @@
         }
     </style>
     <h:body>
+        <div class="card">
+            <h:form>
+                <p:growl id="messages"/>
+
+                <p:menubar>
+                    <p:menuitem value="ホーム" icon="pi pi-fw pi-arrow-circle-left" url="#{request.contextPath}/index.html"/>
+                    <p:menuitem value="避難所一覧" icon="pi pi-fw pi-home" url="#{request.contextPath}/faces/shelter.xhtml"/>
+
+                    <p:submenu label="災害情報" icon="pi pi-fw pi-comments">
+                        <p:menuitem value="投稿" icon="pi pi-fw pi-comment" url="#{request.contextPath}/faces/disasterPost.xhtml"/>
+                        <p:menuitem value="審査" icon="pi pi-fw pi-check" url="#{request.contextPath}/faces/listUncheckedDisasterInformation.xhtml"/>
+                        <p:menuitem value="一覧" icon="pi pi-fw pi-list" url="#{request.contextPath}/faces/listDisasterInformation.xhtml"/>
+                    </p:submenu>
+                </p:menubar>
+            </h:form>
+        </div>
         <h1>避難所検索</h1>
         <h:form id="frm">
             <p:growl id="growl" life="20000" />
@@ -21,7 +39,7 @@
                 <p:tab title="検索項目">
                     <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                         <p:outputLabel for="code" value="行政区域コード" />
-                        <p:inputText id="code" value="#{shelterSearchBean.administrativeAreaCode}" />
+                        <p:keyboard id="code" value="#{shelterSearchBean.administrativeAreaCode}" keypadOnly="true"/>
                     </h:panelGrid>
                 </p:tab>
                 <p:tab title="災害分類">
@@ -54,7 +72,7 @@
                     <f:facet name="header">
                         <h:outputText value="名称" />
                     </f:facet>
-                    <a href="/GHP2021App/index.html#15/#{shelter.latitude}/#{shelter.longtitude}/0/30"><h:outputText value="#{shelter.name}" /></a>
+                    <a href="#{request.contextPath}/index.html#15/#{shelter.latitude}/#{shelter.longtitude}/0/30"><h:outputText value="#{shelter.name}" /></a>
                 </p:column>
 
                 <p:column sortBy="#{shelter.address}">
@@ -96,42 +114,42 @@
                     <f:facet name="header">
                         <h:outputText value="地震災害" />
                     </f:facet>
-                    <p:selectBooleanCheckbox value="#{shelter.p20007}"/>
+                    <p:selectBooleanCheckbox value="#{shelter.p20007}" disabled="true"/>
                 </p:column>
 
                 <p:column sortBy="#{shelter.p20008}">
                     <f:facet name="header">
                         <h:outputText value="津波災害" />
                     </f:facet>
-                    <p:selectBooleanCheckbox value="#{shelter.p20008}"/>
+                    <p:selectBooleanCheckbox value="#{shelter.p20008}" disabled="true"/>
                 </p:column>
 
                 <p:column sortBy="#{shelter.p20009}">
                     <f:facet name="header">
                         <h:outputText value="水害" />
                     </f:facet>
-                    <p:selectBooleanCheckbox value="#{shelter.p20009}"/>
+                    <p:selectBooleanCheckbox value="#{shelter.p20009}" disabled="true"/>
                 </p:column>
 
                 <p:column sortBy="#{shelter.p20010}">
                     <f:facet name="header">
                         <h:outputText value="火山災害" />
                     </f:facet>
-                    <p:selectBooleanCheckbox value="#{shelter.p20010}"/>
+                    <p:selectBooleanCheckbox value="#{shelter.p20010}" disabled="true"/>
                 </p:column>
 
                 <p:column sortBy="#{shelter.p20011}">
                     <f:facet name="header">
                         <h:outputText value="その他" />
                     </f:facet>
-                    <p:selectBooleanCheckbox value="#{shelter.p20011}"/>
+                    <p:selectBooleanCheckbox value="#{shelter.p20011}" disabled="true"/>
                 </p:column>
 
                 <p:column sortBy="#{shelter.p20012}">
                     <f:facet name="header">
                         <h:outputText value="指定なし" />
                     </f:facet>
-                    <p:selectBooleanCheckbox value="#{shelter.p20012}"/>
+                    <p:selectBooleanCheckbox value="#{shelter.p20012}" disabled="true"/>
                 </p:column>
 
             </p:dataTable>
