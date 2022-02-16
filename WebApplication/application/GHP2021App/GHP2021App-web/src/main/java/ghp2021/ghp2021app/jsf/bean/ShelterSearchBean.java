@@ -148,7 +148,7 @@ public class ShelterSearchBean implements Serializable {
                     shelterInformation.getName(),
                     shelterInformation.getAddress(),
                     shelterInformation.getLatitude(),
-                    shelterInformation.getLongtitude(),
+                    shelterInformation.getLongitude(),
                     shelterInformation.getP20007() != 0,
                     shelterInformation.getP20008() != 0,
                     shelterInformation.getP20009() != 0,

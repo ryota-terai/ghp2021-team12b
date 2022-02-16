@@ -15,7 +15,7 @@ public class ShelterSearchResult {
     private final String name;
     private final String address;
     private final double latitude;
-    private final double longtitude;
+    private final double longitude;
     private final boolean p20007;
     private final boolean p20008;
     private final boolean p20009;
@@ -30,7 +30,7 @@ public class ShelterSearchResult {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longtitude;
         this.p20007 = p20007;
         this.p20008 = p20008;
         this.p20009 = p20009;
@@ -57,8 +57,8 @@ public class ShelterSearchResult {
         return latitude;
     }
 
-    public double getLongtitude() {
-        return longtitude;
+    public double getLongitude() {
+        return longitude;
     }
 
     public boolean isP20007() {

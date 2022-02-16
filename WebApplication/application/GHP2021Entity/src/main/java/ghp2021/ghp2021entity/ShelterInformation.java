@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Ryota-Terai
+ * @author r-terai
  */
 @Entity
 @Table(name = "SHELTER_INFORMATION")
@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ShelterInformation.findByName", query = "SELECT s FROM ShelterInformation s WHERE s.name = :name"),
     @NamedQuery(name = "ShelterInformation.findByAddress", query = "SELECT s FROM ShelterInformation s WHERE s.address = :address"),
     @NamedQuery(name = "ShelterInformation.findByLatitude", query = "SELECT s FROM ShelterInformation s WHERE s.latitude = :latitude"),
-    @NamedQuery(name = "ShelterInformation.findByLongtitude", query = "SELECT s FROM ShelterInformation s WHERE s.longtitude = :longtitude"),
+    @NamedQuery(name = "ShelterInformation.findByLongitude", query = "SELECT s FROM ShelterInformation s WHERE s.longitude = :longitude"),
     @NamedQuery(name = "ShelterInformation.findByP20007", query = "SELECT s FROM ShelterInformation s WHERE s.p20007 = :p20007"),
     @NamedQuery(name = "ShelterInformation.findByP20008", query = "SELECT s FROM ShelterInformation s WHERE s.p20008 = :p20008"),
     @NamedQuery(name = "ShelterInformation.findByP20009", query = "SELECT s FROM ShelterInformation s WHERE s.p20009 = :p20009"),
@@ -56,8 +56,8 @@ public class ShelterInformation implements Serializable {
     @Column(name = "LATITUDE")
     private double latitude;
     @Basic(optional = false)
-    @Column(name = "LONGTITUDE")
-    private double longtitude;
+    @Column(name = "LONGITUDE")
+    private double longitude;
     @Basic(optional = false)
     @Column(name = "P20_007")
     private short p20007;
@@ -84,13 +84,13 @@ public class ShelterInformation implements Serializable {
         this.geom = geom;
     }
 
-    public ShelterInformation(String geom, String administrativeAreaCode, String name, String address, double latitude, double longtitude, short p20007, short p20008, short p20009, short p20010, short p20011, short p20012) {
+    public ShelterInformation(String geom, String administrativeAreaCode, String name, String address, double latitude, double longitude, short p20007, short p20008, short p20009, short p20010, short p20011, short p20012) {
         this.geom = geom;
         this.administrativeAreaCode = administrativeAreaCode;
         this.name = name;
         this.address = address;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longitude;
         this.p20007 = p20007;
         this.p20008 = p20008;
         this.p20009 = p20009;
@@ -139,12 +139,12 @@ public class ShelterInformation implements Serializable {
         this.latitude = latitude;
     }
 
-    public double getLongtitude() {
-        return longtitude;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongtitude(double longtitude) {
-        this.longtitude = longtitude;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public short getP20007() {
