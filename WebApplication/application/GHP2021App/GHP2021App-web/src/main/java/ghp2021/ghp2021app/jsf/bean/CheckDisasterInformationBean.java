@@ -23,6 +23,8 @@ public class CheckDisasterInformationBean implements Serializable {
 
     private long id;
 
+    private boolean admin;
+
     private PostInformation postInformation;
 
     @Inject
@@ -40,6 +42,14 @@ public class CheckDisasterInformationBean implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     public PostInformation getPostInformation() {
