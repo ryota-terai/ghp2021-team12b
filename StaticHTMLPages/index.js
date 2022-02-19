@@ -29,7 +29,7 @@ map.on('load', function () {
         data: './data/nagasaki_shelter.geojson'
     });
     map.loadImage(
-        '/img/shelter.png',
+        './img/shelter.png',
         function (error, image) {
             if (error) throw error;
             map.addImage('shelter_icon', image);
@@ -55,7 +55,7 @@ map.on('load', function () {
     });
 
     map.loadImage(
-        '/img/comment.png',
+        './img/comment.png',
         function (error, image) {
             if (error) throw error;
             map.addImage('comment_icon', image);
