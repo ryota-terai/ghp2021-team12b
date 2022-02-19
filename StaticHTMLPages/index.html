@@ -30,25 +30,36 @@
         </div>
         <div id="map"></div>
     </div>
-	<div class="wrap">
-		<div class="hanrei"><img src="data/gake.png" width="100" height="150" alt="土砂災害警戒区域急傾斜地の崩壊"/>
-      </div>
-	  	<div class="hanrei"><img src="data/dosekiryu.png" width="100" height="150" alt="土砂災害特別警戒区域土石流"/>
-		</div>
-	  	<div class="hanrei"><img src="data/zisuberi.png" width="100" height="150" alt="土砂災害特別警戒区域地滑り"/> </div>
-		<div class="hanrei"><img src="data/shinsui.png" width="100" height="150" alt="洪水浸水想定区域の深さ">
-		</div>
-   </div>
-    <!-- 避難所情報 -->
-    <div id="shelter-info">
-        <div class="ui icon message" id="shelter-info-textarea">
-            <i class="bullhorn icon"></i>
-            <div class="content">
-              <div class="header">避難所情報</div>
-              <p>この近くの避難所は、<span id="shelter-name"></span>です。こちらの避難所に避難所してください！</p>
-            </div>
-          </div>
-    </div>
+        <div id="footer">
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width:50%;">
+                            <!-- 避難所情報 -->
+                            <div id="shelter-info">
+                                <div class="ui icon message" id="shelter-info-textarea">
+                                    <i class="bullhorn icon"></i>
+                                    <div class="content">
+                                        <div class="header">避難所情報</div>
+                                        <p>この近くの避難所は、<span id="shelter-name"></span>です。こちらの避難所に避難所してください！</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width:50%;">
+                            <div class="wrap">
+                                <div class="hanrei"><img src="data/gake.png" width="100" height="150" alt="土砂災害警戒区域急傾斜地の崩壊"/>
+                                </div>
+                                <div class="hanrei"><img src="data/dosekiryu.png" width="100" height="150" alt="土砂災害特別警戒区域土石流"/>
+                                </div>
+                                <div class="hanrei"><img src="data/zisuberi.png" width="100" height="150" alt="土砂災害特別警戒区域地滑り"/> </div>
+                                <div class="hanrei"><img src="data/shinsui.png" width="100" height="150" alt="洪水浸水想定区域の深さ">
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     <script src="index.js"></script>
 </body>
 </html>
