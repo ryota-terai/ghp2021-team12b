@@ -36,9 +36,10 @@
             <div class="ui icon message" id="shelter-info-textarea">
                 <i class="bullhorn icon"></i>
                 <div class="content">
-                    <div class="header">
-                        <span id="view_time"></span><br>
-                        <span id="shelter-info-title">西海市からのお知らせ</span>
+                    <div class="header"><span id="shelter-info-title">西海市からのお知らせ</span></div>
+                    <p id="shelter-info-comment">この近くの避難所は、「<span id="shelter-name"></span>」です。こちらの避難所に避難してください！</p>
+                    <div style="font-size: 18px;">
+                        こちらは <span id="view_time"></span> 時点での情報です。
                         <script type="text/javascript">
                             document.getElementById("view_time").innerHTML = getNow();
 
@@ -49,15 +50,14 @@
                                 var day = now.getDate();
                                 var hour = now.getHours();
                                 var min = now.getMinutes();
-                                var sec = now.getSeconds();
 
                                 //出力用
-                                var s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分" + sec + "秒";
+                                var s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分";
                                 return s;
                             }
                         </script>
                     </div>
-                    <p id="shelter-info-comment">この近くの避難所は、「<span id="shelter-name"></span>」です。こちらの避難所に避難してください！</p>
+
                 </div>
             </div>
         </div>
