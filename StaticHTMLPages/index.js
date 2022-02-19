@@ -51,7 +51,7 @@ map.on('load', function () {
     //       現在はGeoJSON形式が有効でないと表示され、使えない
     map.addSource('disaster', {
         type: 'geojson',
-        data: { "type": "FeatureCollection", "name": "Disaster Information", "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } }, "features": [{ "type": "Feature", "properties": { "comment":"がけ崩れが発生していて、道路が通行できません"}, "geometry": { "type": "Point", "coordinates": [ 129.64678750160488, 32.93252441099267 ] } }, { "type": "Feature", "properties": { "comment":"火災発生"}, "geometry": { "type": "Point", "coordinates": [ 129.64102957448563, 32.932827570084726 ] } }, { "type": "Feature", "properties": { "comment":"教会で、火災発生6 Escape ***"}, "geometry": { "type": "Point", "coordinates": [ 129.64208701018111, 32.933548750025345 ] } }]}
+        data: './data/disaster.geojson'
     });
 
     map.loadImage(
