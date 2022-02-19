@@ -5,6 +5,7 @@
  */
 package ghp2021.ghp2021app.ejb;
 
+import ghp2021.ghp2021entity.File;
 import ghp2021.ghp2021entity.PostInformation;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,10 +40,15 @@ public class PostInformationGeoJsonBean {
 
         List<String> features = new ArrayList();
         for (PostInformation information : approvedInformation) {
+            File file = em.find(File.class, information.getId());
             StringBuffer sb = new StringBuffer();
             sb.append("{ \"type\": \"Feature\", \"properties\": { \"comment\":\"");
             sb.append(information.getInformation().replace("\n", ""));
-            sb.append("\"}, \"geometry\": { \"type\": \"Point\", \"coordinates\": [ ");
+            sb.append("\",\"id\":\"");
+            sb.append(information.getId());
+            sb.append("\",\"picture\":");
+            sb.append(file != null ? "\"true\"" : "\"false\"");
+            sb.append("}, \"geometry\": { \"type\": \"Point\", \"coordinates\": [ ");
             sb.append(information.getLongitude());
             sb.append(", ");
             sb.append(information.getLatitude());

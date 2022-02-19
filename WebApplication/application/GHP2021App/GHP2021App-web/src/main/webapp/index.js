@@ -47,11 +47,9 @@ map.on('load', function () {
     });
 
     // 避難所情報レイヤを追加
-    // TODO: APIからとってきたデータを指定したい
-    //       現在はGeoJSON形式が有効でないと表示され、使えない
     map.addSource('disaster', {
         type: 'geojson',
-        data: './data/disaster.geojson'
+        data: '/GHP2021App/webresources/rest/disasterInfo'
     });
 
     map.loadImage(
@@ -102,10 +100,15 @@ map.on('click', 'disaster', function (e) {
     
     var coordinates = e.features[0].geometry.coordinates.slice();
     var comment = e.features[0].properties.comment;
+    var id = e.features[0].properties.id;
+    var picture = e.features[0].properties.picture;
 
     // コメントに改行コードが含まれている場合、改行タグに変換する
     if(comment.match('\n')){
         comment = comment.replace('\n', '<br>');
+    }
+    if (picture === 'true'){
+        comment += '<br><a href=\"/GHP2021App/faces/viewDisasterInformation.xhtml?id='+id+'\" target=\"_blank\">写真を表示</a>';
     }
      
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
