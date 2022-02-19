@@ -46,13 +46,6 @@ map.on('load', function () {
         }
     });
 
-    let disasterInfo;
-    // 避難情報を取得する
-    axios.get(url).then(response => {
-        disasterInfo = response["data"];
-        console.log(disasterInfo);
-    })
-
     // 避難所情報レイヤを追加
     // TODO: APIからとってきたデータを指定したい
     //       現在はGeoJSON形式が有効でないと表示され、使えない
@@ -61,15 +54,22 @@ map.on('load', function () {
         data: { "type": "FeatureCollection", "name": "Disaster Information", "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } }, "features": [{ "type": "Feature", "properties": { "comment":"がけ崩れが発生していて、道路が通行できません"}, "geometry": { "type": "Point", "coordinates": [ 129.64678750160488, 32.93252441099267 ] } }, { "type": "Feature", "properties": { "comment":"火災発生"}, "geometry": { "type": "Point", "coordinates": [ 129.64102957448563, 32.932827570084726 ] } }, { "type": "Feature", "properties": { "comment":"教会で、火災発生6 Escape ***"}, "geometry": { "type": "Point", "coordinates": [ 129.64208701018111, 32.933548750025345 ] } }]}
     });
 
+    map.loadImage(
+        '/img/comment.png',
+        function (error, image) {
+            if (error) throw error;
+            map.addImage('comment_icon', image);
+        }
+    );
+
     // スタイルを設定
     map.addLayer({
         'id': 'disaster',
-        'type': 'circle',
-        'source': 'disaster',
-        'layout': {},
-        'paint': {
-            'circle-color': '#008000',
-            'circle-radius': 5
+		'type': 'symbol',
+		'source': 'disaster',
+		'layout': {
+		'icon-image': 'comment_icon',
+		'icon-size': 0.1
         }   
     });
 });
@@ -137,3 +137,11 @@ map.on('mouseenter', 'disaster', function () {
 map.on('mouseleave', 'disaster', function () {
     map.getCanvas().style.cursor = '';
 });
+
+/* // チェックボックスのオンオフでレイヤの表示/非表示を切り替える
+
+$(#shelter-layer).click(function(){
+    if(!$(this).prop('checked')){
+        map.removeLayer('shelter_point');
+    }
+}); */
