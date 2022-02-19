@@ -18,6 +18,9 @@ map.addControl(new maplibregl.GeolocateControl({positionOptions: {enableHighAccu
 // 左下の尺度を表示する
 map.addControl(new maplibregl.ScaleControl() );
 
+// 避難情報を取得するAPIのURL
+const url = "https://ryota-terai.github.io/www/disaster_information.json";
+
 // 画面がロードされたら地図にレイヤを追加する
 map.on('load', function () {
     // 避難所情報レイヤを追加
@@ -25,34 +28,48 @@ map.on('load', function () {
         type: 'geojson',
         data: './data/nagasaki_shelter.geojson'
     });
+    map.loadImage(
+        './img/shelter.png',
+        function (error, image) {
+            if (error) throw error;
+            map.addImage('shelter_icon', image);
+        }
+    );
 
-    // スタイルを設定
     map.addLayer({
         'id': 'shelter_point',
-        'type': 'circle',
+		'type': 'symbol',
         'source': 'shelter_point',
-        'layout': {},
-        'paint': {
-            'circle-color': '#FF0000',
-            'circle-radius': 5
+		'layout': {
+		'icon-image': 'shelter_icon',
+		'icon-size': 0.1
         }   
     });
 
-    // 投稿情報レイヤを追加
+    // 避難所情報レイヤを追加
+    // TODO: APIからとってきたデータを指定したい
+    //       現在はGeoJSON形式が有効でないと表示され、使えない
     map.addSource('disaster', {
         type: 'geojson',
         data: './data/disaster.geojson'
     });
 
+    map.loadImage(
+        './img/comment.png',
+        function (error, image) {
+            if (error) throw error;
+            map.addImage('comment_icon', image);
+        }
+    );
+
     // スタイルを設定
     map.addLayer({
         'id': 'disaster',
-        'type': 'circle',
+		'type': 'symbol',
         'source': 'disaster',
-        'layout': {},
-        'paint': {
-            'circle-color': '#008000',
-            'circle-radius': 5
+		'layout': {
+		'icon-image': 'comment_icon',
+		'icon-size': 0.1
         }   
     });
 });
@@ -68,10 +85,15 @@ map.on('click', 'shelter_point', function (e) {
     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
      
+    // ポップアップを表示する
     new maplibregl.Popup()
     .setLngLat(coordinates)
     .setHTML(name)
     .addTo(map);
+
+    // 避難所情報欄に避難所名を記載する
+    var shelterName = $("#shelter-name")[0];
+    shelterName.innerHTML = name;
 });
 
 // 投稿情報の地物をクリックしたときに、コメントを表示する

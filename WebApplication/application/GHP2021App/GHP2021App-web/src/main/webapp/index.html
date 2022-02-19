@@ -1,45 +1,73 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>3Dハザードマップ</title>
-    <meta name="description" content="ハザードマップです">
-    <link href="style.css" rel="stylesheet">
-    <!-- MapLibre -->
-    <link href='https://unpkg.com/maplibre-gl@2.1.1/dist/maplibre-gl.css' rel='stylesheet' />
-    <script src='https://unpkg.com/maplibre-gl@2.1.1/dist/maplibre-gl.js'></script>
-    <!-- Semantic-UI  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-</head>
-<body>
-    <!-- ヘッダー -->
-    <div id="header">
-        <h2 id="header-title">3Dハザードマップ</h2>
-    </div>
-    <!-- 地図 -->
-    <div id="map-area">
-        <div id="sidebar" class="ui bottom attached segment pushable">
-            <div id="button-area" class="ui grey visible inverted left vertical sidebar menu">
-                <a class="item" href="/GHP2021App/faces/shelter.xhtml"><i class="home icon"></i>避難所一覧</a>
-                <a class="item" href="/GHP2021App/faces/disasterPost.xhtml"><i class="edit icon"></i>災害情報投稿</a>
-                <a class="item" href="/GHP2021App/faces/listUncheckedDisasterInformation.xhtml"><i class="tag icon"></i>災害情報審査</a>
-                <a class="item" href="/GHP2021App/faces/listDisasterInformation.xhtml"><i class="comments icon"></i>災害情報一覧</a>
-            </div>
+    <head>
+        <meta charset="utf-8">
+        <title>3Dハザードマップ</title>
+        <meta name="description" content="ハザードマップです">
+        <link href="style.css" rel="stylesheet">
+        <!-- MapLibre -->
+        <link href="https://unpkg.com/maplibre-gl@2.1.1/dist/maplibre-gl.css" rel="stylesheet" />
+        <script src="https://unpkg.com/maplibre-gl@2.1.1/dist/maplibre-gl.js"></script>
+        <!-- Semantic-UI  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    </head>
+    <body>
+        <!-- ヘッダー -->
+        <div id="header">
+        <h2 id="header-title">わかりやすい避難地図</h2>
         </div>
-        <div id="map"></div>
-    </div>
-    <!-- 避難所情報 -->
-    <div id="shelter-info">
-        <div class="ui icon message" id="shelter-info-textarea">
-            <i class="bullhorn icon"></i>
-            <div class="content">
-              <div class="header">避難所情報</div>
-              <p>この近くの避難所は、○○○○です。</p>
+        <!-- 地図 -->
+        <div id="map-area">
+            <div id="sidebar" class="ui bottom attached segment pushable">
+                <div id="button-area" class="ui grey visible inverted left vertical sidebar menu">
+                    <a class="item" href="/GHP2021App/faces/shelter.xhtml"><i class="home icon"></i>避難所一覧</a>
+                    <a class="item" href="/GHP2021App/faces/disasterPost.xhtml"><i class="edit icon"></i>災害情報投稿</a>
+                    <a class="item" href="/GHP2021App/faces/listUncheckedDisasterInformation.xhtml"><i class="tag icon"></i>災害情報審査</a>
+                    <a class="item" href="/GHP2021App/faces/listDisasterInformation.xhtml"><i class="comments icon"></i>災害情報一覧</a>
+                </div>
             </div>
-          </div>
-    </div>
-    <script src="index.js"></script>
-</body>
+            <div id="map"></div>
+        </div>
+                            <!-- 避難所情報 -->
+    <div id="bottom-area" >
+                            <div id="shelter-info">
+                                <div class="ui icon message" id="shelter-info-textarea">
+                                    <i class="bullhorn icon"></i>
+                                    <div class="content">
+                    <div class="header"><span id="shelter-info-title">西海市からのお知らせ</span></div>
+                    <p id="shelter-info-comment">この近くの避難所は、「<span id="shelter-name"></span>」です。こちらの避難所に避難してください！</p>
+                    <div style="font-size: 18px;">
+                        こちらは <span id="view_time"></span> 時点での情報です。
+                        <script type="text/javascript">
+                            document.getElementById("view_time").innerHTML = getNow();
+
+                            function getNow() {
+                                var now = new Date();
+                                var year = now.getFullYear();
+                                var mon = now.getMonth() + 1; //１を足すこと
+                                var day = now.getDate();
+                                var hour = now.getHours();
+                                var min = now.getMinutes();
+
+                                //出力用
+                                var s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分";
+                                return s;
+                            }
+                        </script>
+                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wrap">
+            <div class="hanrei"><img src="data/gake.png" width="100" height="150" alt="土砂災害警戒区域急傾斜地の崩壊"/></div>
+            <div class="hanrei"><img src="data/dosekiryu.png" width="100" height="150" alt="土砂災害特別警戒区域土石流"/></div>
+                                <div class="hanrei"><img src="data/zisuberi.png" width="100" height="150" alt="土砂災害特別警戒区域地滑り"/> </div>
+            <div class="hanrei"><img src="data/shinsui.png" width="100" height="150" alt="洪水浸水想定区域の深さ"></div>
+                                </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
 </html>

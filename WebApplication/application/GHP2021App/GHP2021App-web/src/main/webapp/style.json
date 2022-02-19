@@ -35,7 +35,7 @@
     "dosya-doseki": {
       "type": "raster",
       "tiles": [
-        "https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki_data/42/{z}/{x}/{y}.png"
+        "https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki/{z}/{x}/{y}.png"
       ],
       "minzoom": 2,
       "maxzoom": 17
@@ -43,7 +43,7 @@
     "dosya-gake": {
       "type": "raster",
       "tiles": [
-        "https://disaportaldata.gsi.go.jp/raster/05_kyukeishakeikaikuiki_data/42/{z}/{x}/{y}.png"
+        "https://disaportaldata.gsi.go.jp/raster/05_kyukeishakeikaikuiki/{z}/{x}/{y}.png"
       ],
       "minzoom": 2,
       "maxzoom": 17
@@ -51,7 +51,7 @@
     "dosya-zisuberi": {
       "type": "raster",
       "tiles": [
-        "https://disaportaldata.gsi.go.jp/raster/05_jisuberikeikaikuiki_data/42/{z}/{x}/{y}.png"
+        "https://disaportaldata.gsi.go.jp/raster/05_jisuberikeikaikuiki/{z}/{x}/{y}.png"
       ],
       "minzoom": 2,
       "maxzoom": 17
@@ -62,22 +62,6 @@
         "https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin_data/{z}/{x}/{y}.png"
       ],
       "minzoom": 2,
-      "maxzoom": 17
-    },
-    "toukai-hanran": {
-      "type": "raster",
-      "tiles": [
-        "https://disaportaldata.gsi.go.jp/raster/01_flood_l2_kaokutoukai_hanran_data/{z}/{x}/{y}.png"
-      ],
-      "minzoom": 4,
-      "maxzoom": 17
-    },
-    "toukai-kagan": {
-      "type": "raster",
-      "tiles": [
-        "https://disaportaldata.gsi.go.jp/raster/01_flood_l2_kaokutoukai_kagan_data/{z}/{x}/{y}.png"
-      ],
-      "minzoom": 4,
       "maxzoom": 17
     }
   },
@@ -297,24 +281,6 @@
       "metadata": {"maputnik:comment": "土砂災害警戒区域（地すべり）"},
       "source": "dosya-zisuberi",
       "minzoom": 2,
-      "layout": {"visibility": "visible"},
-      "paint": {"raster-opacity": 0.6}
-    },
-    {
-      "id": "toukai-hanran",
-      "type": "raster",
-      "metadata": {"maputnik:comment": "家屋倒壊等氾濫想定区域（氾濫流）"},
-      "source": "toukai-hanran",
-      "minzoom": 4,
-      "layout": {"visibility": "visible"},
-      "paint": {"raster-opacity": 0.6}
-    },
-    {
-      "id": "toukai-kagan",
-      "type": "raster",
-      "metadata": {"maputnik:comment": "家屋倒壊家屋倒壊等氾濫想定区域（河岸侵食）"},
-      "source": "toukai-kagan",
-      "minzoom": 4,
       "layout": {"visibility": "visible"},
       "paint": {"raster-opacity": 0.6}
     },

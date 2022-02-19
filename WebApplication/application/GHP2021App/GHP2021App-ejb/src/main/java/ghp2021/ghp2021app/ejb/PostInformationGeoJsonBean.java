@@ -41,7 +41,7 @@ public class PostInformationGeoJsonBean {
         for (PostInformation information : approvedInformation) {
             StringBuffer sb = new StringBuffer();
             sb.append("{ \"type\": \"Feature\", \"properties\": { \"comment\":\"");
-            sb.append(information.getInformation());
+            sb.append(information.getInformation().replace("\n", ""));
             sb.append("\"}, \"geometry\": { \"type\": \"Point\", \"coordinates\": [ ");
             sb.append(information.getLongitude());
             sb.append(", ");
