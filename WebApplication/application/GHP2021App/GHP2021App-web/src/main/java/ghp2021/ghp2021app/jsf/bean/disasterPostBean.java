@@ -6,10 +6,14 @@
 package ghp2021.ghp2021app.jsf.bean;
 
 import ghp2021.ghp2021app.ejb.PostInformationEJB;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import org.primefaces.model.file.UploadedFile;
 
 /**
  *
@@ -33,6 +37,12 @@ public class disasterPostBean {
      * 投稿内容
      */
     private String information;
+
+    /**
+     * ファイル
+     */
+    private UploadedFile file;
+
     @Inject
     private PostInformationEJB postInformationEJB;
 
@@ -63,14 +73,27 @@ public class disasterPostBean {
         this.information = information;
     }
 
-    public String postDisaster() {
-//        latitude = FacesContext.getCurrentInstance().
-//                getExternalContext().getRequestParameterMap().get("latitude");
-//        longitude = FacesContext.getCurrentInstance().
-//                getExternalContext().getRequestParameterMap().get("longitude");
+    public UploadedFile getFile() {
+        return file;
+    }
 
-        postInformationEJB.postDisasterInformation(latitude, longitude, information);
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
 
+    public String postDisaster() throws IOException {
+        byte[] buffer = null;
+        if (file != null) {
+            FacesMessage message = new FacesMessage("Successful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+            long size = file.getSize();
+            InputStream stream = file.getInputStream();
+            buffer = new byte[(int) size];
+            stream.read(buffer, 0, (int) size);
+            stream.close();
+        }
+        postInformationEJB.postDisasterInformation(latitude, longitude, information, buffer);
         return "disasterPosted?faces-redirect=true";
     }
 }

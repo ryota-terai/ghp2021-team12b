@@ -32,6 +32,8 @@ and open the template in the editor.
                     <h:inputHidden id="latitude" value="#{checkDisasterInformationBean.postInformation.latitude}" />
                     <h:inputHidden id="longitude" value="#{checkDisasterInformationBean.postInformation.longitude}" />
                     <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <p:outputLabel for="picture" value="写真" />
+                        <p:graphicImage id="picture" value="#{checkDisasterInformationBean.picture}" stream="false" width="600px"/>
                         <p:outputLabel for="information" value="投稿メッセージ" />
                         <p:inputTextarea id="information" value="#{checkDisasterInformationBean.postInformation.information}" rows="6" cols="50" counter="display" maxlength="255" counterTemplate="{0} characters remaining" />
                         <h:outputText id="display" />

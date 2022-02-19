@@ -28,7 +28,7 @@
         <property name="TcpSndBuf" value="0"></property>
         <property name="ContinueBatchOnError" value="true"></property>
         <property name="Logger" value="com.mysql.cj.log.StandardLogger"></property>
-        <property name="MaxAllowedPacket" value="65535"></property>
+        <property name="MaxAllowedPacket" value="16777216"></property>
         <property name="PrepStmtCacheSqlLimit" value="256"></property>
         <property name="AllowMultiQueries" value="false"></property>
         <property name="InitialTimeout" value="2"></property>

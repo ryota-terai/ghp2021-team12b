@@ -5,6 +5,7 @@
  */
 package ghp2021.ghp2021app.ejb;
 
+import ghp2021.ghp2021entity.File;
 import ghp2021.ghp2021entity.PostInformation;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,7 @@ public class PostInformationEJB implements PostInformationEJBLocal {
     private static final Logger LOG = Logger.getLogger(ShelterSearchEJB.class.getName());
 
     @Override
-    public void postDisasterInformation(String latitude, String longtitude, String information) {
+    public void postDisasterInformation(String latitude, String longtitude, String information, byte[] file) {
         PostInformation info = new PostInformation();
         Date now = new Date();
         info.setId(now.getTime());
@@ -42,6 +43,14 @@ public class PostInformationEJB implements PostInformationEJBLocal {
         info.setApproved((short) 0);
 
         em.persist(info);
+
+        if (file != null) {
+            File fileEntity = new File();
+            fileEntity.setId(info.getId());
+            fileEntity.setFile(file);
+
+            em.persist(fileEntity);
+        }
     }
 
     @Override
@@ -64,6 +73,16 @@ public class PostInformationEJB implements PostInformationEJBLocal {
     }
 
     @Override
+    public byte[] getPicture(long id) {
+        File file = em.find(File.class, id);
+        if (file != null) {
+            return file.getFile();
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public void confirm(PostInformation information) {
         information.setApproved(1);
         em.merge(information);
@@ -72,5 +91,9 @@ public class PostInformationEJB implements PostInformationEJBLocal {
     @Override
     public void delete(long id) {
         em.remove(getPostInformation(id));
+        File file = em.find(File.class, id);
+        if (file != null) {
+            em.remove(file);
+        }
     }
 }

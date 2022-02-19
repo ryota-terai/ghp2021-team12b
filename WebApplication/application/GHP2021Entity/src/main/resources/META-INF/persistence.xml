@@ -4,5 +4,6 @@
     <jta-data-source>jdbc/GHP2021</jta-data-source>
     <class>ghp2021.ghp2021entity.ShelterInformation</class>
     <class>ghp2021.ghp2021entity.PostInformation</class>
+    <class>ghp2021.ghp2021entity.File</class>
   </persistence-unit>
 </persistence>

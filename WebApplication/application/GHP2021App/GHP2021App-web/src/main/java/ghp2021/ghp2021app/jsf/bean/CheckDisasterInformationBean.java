@@ -7,6 +7,8 @@ package ghp2021.ghp2021app.jsf.bean;
 
 import ghp2021.ghp2021app.ejb.PostInformationEJB;
 import ghp2021.ghp2021entity.PostInformation;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import javax.faces.view.ViewScoped;
@@ -58,6 +60,17 @@ public class CheckDisasterInformationBean implements Serializable {
 
     public void load() {
         this.postInformation = postInformationEJB.getPostInformation(id);
+    }
+
+    public byte[] getPicture() throws IOException {
+        byte byteArray[] = postInformationEJB.getPicture(id);
+        if (byteArray == null) {
+            byteArray = new byte[0];
+        }
+        ByteArrayInputStream is = new ByteArrayInputStream(byteArray);
+        byte[] array = new byte[is.available()];
+        is.read(array);
+        return array;
     }
 
     public String confirm() {

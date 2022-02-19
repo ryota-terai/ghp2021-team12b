@@ -22,8 +22,9 @@ public interface PostInformationEJBLocal {
      * @param latitude 緯度
      * @param longtitude 経度
      * @param information 情報
+     * @param file 画像ファイル
      */
-    public void postDisasterInformation(String latitude, String longtitude, String information);
+    public void postDisasterInformation(String latitude, String longtitude, String information, byte[] file);
 
     /**
      * 未確認の投稿情報を取得する
@@ -46,6 +47,13 @@ public interface PostInformationEJBLocal {
      * @return IDに合致する投稿情報
      */
     public PostInformation getPostInformation(long id);
+    
+    /**
+     * 投稿画像取得
+     * @param id 投稿ID
+     * @return 画像
+     */
+    public byte[] getPicture(long id);
 
     public void confirm(PostInformation information);
 
