@@ -1,1 +1,2 @@
 # ghp2021-team12b
+WebApplicationの構築方法は、WebApplicationディレクトリ内のreadme.odtを参照
