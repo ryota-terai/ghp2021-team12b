@@ -5,12 +5,13 @@
  */
 package ghp2021.ghp2021app.ejb;
 
+import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.Point;
 import ghp2021.ghp2021entity.File;
 import ghp2021.ghp2021entity.PostInformation;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -33,50 +34,28 @@ public class PostInformationGeoJsonBean {
 
     private static final Logger LOG = Logger.getLogger(ShelterSearchEJB.class.getName());
 
-    public String getDisasterInformation() {
+    public String getDisasterInformationGeoJson() {
         List<PostInformation> approvedInformation = em.createNamedQuery("PostInformation.findByApproved", PostInformation.class)
                 .setParameter("approved", 1)
                 .getResultList();
 
-        List<String> features = new ArrayList();
+        List<Feature> features = new ArrayList();
+
         for (PostInformation information : approvedInformation) {
             if (information.getLongitude().length() > 0 && information.getLatitude().length() > 0) {
-                File file = em.find(File.class, information.getId());
-                StringBuffer sb = new StringBuffer();
-                sb.append("{ \"type\": \"Feature\", \"properties\": { \"comment\":\"");
-                sb.append(information.getInformation().replace("\n", ""));
-                sb.append("\",\"id\":\"");
-                sb.append(information.getId());
-                sb.append("\",\"picture\":");
-                sb.append(file != null ? "\"true\"" : "\"false\"");
-                sb.append("}, \"geometry\": { \"type\": \"Point\", \"coordinates\": [ ");
-                sb.append(information.getLongitude());
-                sb.append(", ");
-                sb.append(information.getLatitude());
-                sb.append(" ] } }");
+                Point point = Point.fromLngLat(Double.parseDouble(information.getLongitude()), Double.parseDouble(information.getLatitude()));
+                Feature feature = Feature.fromGeometry(point);
+                feature.addStringProperty("comment", information.getInformation().replace("\n", ""));
+                feature.addStringProperty("id", information.getId().toString());
 
-                System.out.println(sb);
-                features.add(sb.toString());
+                File file = em.find(File.class, information.getId());
+                feature.addBooleanProperty("picture", file != null);
+                features.add(feature);
             }
         }
-        System.out.println(features);
-        List<Map<String, Object>> featureCollection = new ArrayList();
-        featureCollection.add((Map<String, Object>) (new HashMap()).put("type", "FeatureCollection"));
-        featureCollection.add((Map<String, Object>) (new HashMap()).put("name", "Disaster Information"));
-        featureCollection.add((Map<String, Object>) (new HashMap()).put("features", features));
+        FeatureCollection featureCollection = FeatureCollection.fromFeatures(features);
 
-        System.out.println(featureCollection);
-
-        StringBuffer json = new StringBuffer();
-        json.append("{\n"
-                + "\"type\": \"FeatureCollection\",\n"
-                + "\"name\": \"Disaster Information\",\n"
-                + "\"crs\": { \"type\": \"name\", \"properties\": { \"name\": \"urn:ogc:def:crs:OGC:1.3:CRS84\" } },\n"
-                + "\"features\": ");
-        json.append(features.toString());
-        json.append("}");
-
-        return json.toString();
+        return featureCollection.toJson();
     }
 
 }

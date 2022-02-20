@@ -107,7 +107,7 @@ map.on('click', 'disaster', function (e) {
     if(comment.match('\n')){
         comment = comment.replace('\n', '<br>');
     }
-    if (picture === 'true') {
+    if (picture === true) {
         comment += '<br><iframe src=\"/GHP2021App/faces/post/view/picture.xhtml?id=' + id + '\" width="200" height="150"></iframe>';
         comment += '<br><a href=\"/GHP2021App/faces/post/view/view.xhtml?id=' + id + '\" target=\"_blank\">投稿情報画面で確認</a>';
     }

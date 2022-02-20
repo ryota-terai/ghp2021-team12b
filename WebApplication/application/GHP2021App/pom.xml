@@ -84,5 +84,6 @@
         <module>GHP2021App-ejb</module>
         <module>GHP2021App-web</module>
         <module>../GHP2021Entity</module>
+        <module>../GeoJSON</module>
     </modules>
 </project>

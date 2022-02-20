@@ -66,7 +66,7 @@ public class GenericResource {
         String geoJson = null;
         try {
             tx.begin();
-            geoJson = postInformationGeoJsonBean.getDisasterInformation();
+            geoJson = postInformationGeoJsonBean.getDisasterInformationGeoJson();
 
             tx.commit();
         } catch (HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException | NotSupportedException | SystemException | RollbackException ex) {
