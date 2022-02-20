@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ghp2021.ghp2021app.jsf.bean;
+package ghp2021.ghp2021app.shelter;
 
 /**
  *

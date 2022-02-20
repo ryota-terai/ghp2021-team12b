@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ghp2021.ghp2021app.jsf.bean;
+package ghp2021.ghp2021app.post.post;
 
 import ghp2021.ghp2021app.ejb.PostInformationEJB;
 import java.io.IOException;
@@ -19,9 +19,9 @@ import org.primefaces.model.file.UploadedFile;
  *
  * @author Ryota-Terai
  */
-@Named(value = "disasterPostBean")
+@Named(value = "postBean")
 @RequestScoped
-public class disasterPostBean {
+public class PostBean {
 
     /**
      * 緯度
@@ -46,7 +46,7 @@ public class disasterPostBean {
     @Inject
     private PostInformationEJB postInformationEJB;
 
-    public disasterPostBean() {
+    public PostBean() {
     }
 
     public String getLatitude() {

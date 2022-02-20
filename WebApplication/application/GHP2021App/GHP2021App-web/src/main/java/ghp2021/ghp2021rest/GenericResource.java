@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ghp2021.ghp2021app.rest;
+package ghp2021.ghp2021rest;
 
 import ghp2021.ghp2021app.ejb.PostInformationGeoJsonBean;
 import java.util.logging.Level;

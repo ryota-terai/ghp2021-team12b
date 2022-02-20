@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ghp2021.ghp2021app.jsf.bean;
+package ghp2021.ghp2021app.post.check;
 
 import ghp2021.ghp2021app.ejb.PostInformationEJB;
 import ghp2021.ghp2021entity.PostInformation;
@@ -16,9 +16,9 @@ import javax.inject.Named;
  *
  * @author r-terai
  */
-@Named(value = "uncheckedDisasterInformationBean")
+@Named(value = "listUncheckedBean")
 @RequestScoped
-public class UncheckedDisasterInformationBean {
+public class ListUncheckedBean {
 
     private List<PostInformation> postedInformation;
 
@@ -28,7 +28,7 @@ public class UncheckedDisasterInformationBean {
     /**
      * Creates a new instance of CheckDisasterInformationBean
      */
-    public UncheckedDisasterInformationBean() {
+    public ListUncheckedBean() {
     }
 
     public void load() {

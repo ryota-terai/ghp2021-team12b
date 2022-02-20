@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ghp2021.ghp2021app.jsf.bean;
+package ghp2021.ghp2021app.post.view;
 
 import ghp2021.ghp2021app.ejb.PostInformationEJB;
 import ghp2021.ghp2021entity.PostInformation;
@@ -16,9 +16,9 @@ import javax.inject.Inject;
  *
  * @author r-terai
  */
-@Named(value = "disasterInformationBean")
+@Named(value = "listCheckedBean")
 @RequestScoped
-public class DisasterInformationBean {
+public class ListCheckedBean {
 
     private List<PostInformation> postedInformation;
 
@@ -28,7 +28,7 @@ public class DisasterInformationBean {
     /**
      * Creates a new instance of DisasterInformationBean
      */
-    public DisasterInformationBean() {
+    public ListCheckedBean() {
     }
 
     public List<PostInformation> getPostedInformation() {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ghp2021.ghp2021app.jsf.bean;
+package ghp2021.ghp2021app.post.check;
 
 import ghp2021.ghp2021app.ejb.PostInformationEJB;
 import ghp2021.ghp2021entity.PostInformation;
@@ -19,9 +19,9 @@ import javax.inject.Inject;
  *
  * @author r-terai
  */
-@Named(value = "checkDisasterInformationBean")
+@Named(value = "postCheckBean")
 @ViewScoped
-public class CheckDisasterInformationBean implements Serializable {
+public class CheckBean implements Serializable {
 
     private long id;
 
@@ -35,7 +35,7 @@ public class CheckDisasterInformationBean implements Serializable {
     /**
      * Creates a new instance of CheckDisasterInformationBean
      */
-    public CheckDisasterInformationBean() {
+    public CheckBean() {
     }
 
     public long getId() {
@@ -78,12 +78,12 @@ public class CheckDisasterInformationBean implements Serializable {
 
         postInformationEJB.confirm(postInformation);
 
-        return "listUncheckedDisasterInformation?faces-redirect=true";
+        return "/post/check/index?faces-redirect=true";
     }
 
     public String delete() {
         postInformationEJB.delete(id);
 
-        return "listUncheckedDisasterInformation?faces-redirect=true";
+        return "/post/check/index?faces-redirect=true";
     }
 }

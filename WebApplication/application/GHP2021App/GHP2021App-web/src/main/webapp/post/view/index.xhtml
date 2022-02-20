@@ -13,19 +13,19 @@
     <h:body>
         <ui:composition template="/template/template.xhtml">
             <ui:define name="content">
-                <h1>災害投稿情報(未承認投稿一覧)</h1>
+                <h1>災害情報</h1>
                 <f:metadata>
-                    <f:viewAction action="#{uncheckedDisasterInformationBean.load()}" />
+                    <f:viewAction action="#{listCheckedBean.load()}" />
                 </f:metadata>
                 <h:form>
-                    <p:dataTable id="tbl" var="information" value="#{uncheckedDisasterInformationBean.postedInformation}"
+                    <p:dataTable id="tbl" var="information" value="#{listCheckedBean.postedInformation}"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="50" style="margin-bottom:20px" sortMode="multiple">
                         <p:column sortBy="#{information.id}">
                             <f:facet name="header">
                                 <h:outputText value="ID" />
                             </f:facet>
-                            <h:link outcome="checkUncheckedDisasterInformation" value="#{information.id}">
+                            <h:link outcome="view" value="#{information.id}">
                                 <f:param name="id" value="#{information.id}" />
                             </h:link>
                         </p:column>

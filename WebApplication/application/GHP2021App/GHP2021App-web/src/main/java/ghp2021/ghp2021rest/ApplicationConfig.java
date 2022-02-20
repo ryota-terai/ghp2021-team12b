@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ghp2021.ghp2021app.rest;
+package ghp2021.ghp2021rest;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -29,7 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(ghp2021.ghp2021app.rest.GenericResource.class);
+        resources.add(ghp2021.ghp2021rest.GenericResource.class);
     }
     
 }
