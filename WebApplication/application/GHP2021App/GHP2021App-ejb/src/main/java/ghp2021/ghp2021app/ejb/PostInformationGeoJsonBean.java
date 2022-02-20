@@ -40,22 +40,24 @@ public class PostInformationGeoJsonBean {
 
         List<String> features = new ArrayList();
         for (PostInformation information : approvedInformation) {
-            File file = em.find(File.class, information.getId());
-            StringBuffer sb = new StringBuffer();
-            sb.append("{ \"type\": \"Feature\", \"properties\": { \"comment\":\"");
-            sb.append(information.getInformation().replace("\n", ""));
-            sb.append("\",\"id\":\"");
-            sb.append(information.getId());
-            sb.append("\",\"picture\":");
-            sb.append(file != null ? "\"true\"" : "\"false\"");
-            sb.append("}, \"geometry\": { \"type\": \"Point\", \"coordinates\": [ ");
-            sb.append(information.getLongitude());
-            sb.append(", ");
-            sb.append(information.getLatitude());
-            sb.append(" ] } }");
+            if (information.getLongitude().length() > 0 && information.getLatitude().length() > 0) {
+                File file = em.find(File.class, information.getId());
+                StringBuffer sb = new StringBuffer();
+                sb.append("{ \"type\": \"Feature\", \"properties\": { \"comment\":\"");
+                sb.append(information.getInformation().replace("\n", ""));
+                sb.append("\",\"id\":\"");
+                sb.append(information.getId());
+                sb.append("\",\"picture\":");
+                sb.append(file != null ? "\"true\"" : "\"false\"");
+                sb.append("}, \"geometry\": { \"type\": \"Point\", \"coordinates\": [ ");
+                sb.append(information.getLongitude());
+                sb.append(", ");
+                sb.append(information.getLatitude());
+                sb.append(" ] } }");
 
-            System.out.println(sb);
-            features.add(sb.toString());
+                System.out.println(sb);
+                features.add(sb.toString());
+            }
         }
         System.out.println(features);
         List<Map<String, Object>> featureCollection = new ArrayList();
