@@ -107,8 +107,9 @@ map.on('click', 'disaster', function (e) {
     if(comment.match('\n')){
         comment = comment.replace('\n', '<br>');
     }
-    if (picture === 'true'){
-        comment += '<br><a href=\"/GHP2021App/faces/viewDisasterInformation.xhtml?id='+id+'\" target=\"_blank\">写真を表示</a>';
+    if (picture === 'true') {
+        comment += '<br><iframe src=\"/GHP2021App/faces/picture.xhtml?id=' + id + '\" width="200" height="150"></iframe>';
+        comment += '<br><a href=\"/GHP2021App/faces/viewDisasterInformation.xhtml?id=' + id + '\" target=\"_blank\">投稿情報画面で確認</a>';
     }
      
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
