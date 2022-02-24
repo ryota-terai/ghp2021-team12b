@@ -11,9 +11,11 @@ package ghp2021.ghp2021app.shelter;
  */
 public class ShelterSearchResult {
 
+    private final String geom;
     private final String administrativeAreaCode;
     private final String name;
     private final String address;
+    private final String type;
     private final double latitude;
     private final double longitude;
     private final boolean p20007;
@@ -24,13 +26,17 @@ public class ShelterSearchResult {
     private final boolean p20012;
     private final int numberOfEvacuus;
     private final int numberOfNonEvacuees;
+    private boolean open;
+    private String comment;
 
-    public ShelterSearchResult(String administrativeAreaCode, String name, String address, double latitude, double longtitude, boolean p20007, boolean p20008, boolean p20009, boolean p20010, boolean p20011, boolean p20012, int numberOfEvacuus, int numberOfNonEvacuees) {
+    public ShelterSearchResult(String geom, String administrativeAreaCode, String name, String address, String type, double latitude, double longitude, boolean p20007, boolean p20008, boolean p20009, boolean p20010, boolean p20011, boolean p20012, int numberOfEvacuus, int numberOfNonEvacuees, boolean open, String comment) {
+        this.geom = geom;
         this.administrativeAreaCode = administrativeAreaCode;
         this.name = name;
         this.address = address;
+        this.type = type;
         this.latitude = latitude;
-        this.longitude = longtitude;
+        this.longitude = longitude;
         this.p20007 = p20007;
         this.p20008 = p20008;
         this.p20009 = p20009;
@@ -39,6 +45,12 @@ public class ShelterSearchResult {
         this.p20012 = p20012;
         this.numberOfEvacuus = numberOfEvacuus;
         this.numberOfNonEvacuees = numberOfNonEvacuees;
+        this.open = open;
+        this.comment = comment;
+    }
+
+    public String getGeom() {
+        return geom;
     }
 
     public String getAdministrativeAreaCode() {
@@ -51,6 +63,10 @@ public class ShelterSearchResult {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public double getLatitude() {
@@ -91,6 +107,22 @@ public class ShelterSearchResult {
 
     public int getNumberOfNonEvacuees() {
         return numberOfNonEvacuees;
+    }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
 }

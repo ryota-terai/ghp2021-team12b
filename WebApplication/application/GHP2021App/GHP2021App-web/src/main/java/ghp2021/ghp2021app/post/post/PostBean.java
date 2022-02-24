@@ -8,8 +8,6 @@ package ghp2021.ghp2021app.post.post;
 import ghp2021.ghp2021app.ejb.PostInformationEJB;
 import java.io.IOException;
 import java.io.InputStream;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -19,8 +17,6 @@ import org.primefaces.model.file.UploadedFile;
  *
  * @author Ryota-Terai
  */
-@Named(value = "postBean")
-@RequestScoped
 public class PostBean {
 
     /**

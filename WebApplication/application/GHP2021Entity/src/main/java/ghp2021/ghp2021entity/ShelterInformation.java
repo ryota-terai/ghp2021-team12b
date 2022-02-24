@@ -7,11 +7,13 @@ package ghp2021.ghp2021entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ShelterInformation.findByAdministrativeAreaCode", query = "SELECT s FROM ShelterInformation s WHERE s.administrativeAreaCode = :administrativeAreaCode"),
     @NamedQuery(name = "ShelterInformation.findByName", query = "SELECT s FROM ShelterInformation s WHERE s.name = :name"),
     @NamedQuery(name = "ShelterInformation.findByAddress", query = "SELECT s FROM ShelterInformation s WHERE s.address = :address"),
+    @NamedQuery(name = "ShelterInformation.findByType", query = "SELECT s FROM ShelterInformation s WHERE s.type = :type"),
     @NamedQuery(name = "ShelterInformation.findByLatitude", query = "SELECT s FROM ShelterInformation s WHERE s.latitude = :latitude"),
     @NamedQuery(name = "ShelterInformation.findByLongitude", query = "SELECT s FROM ShelterInformation s WHERE s.longitude = :longitude"),
     @NamedQuery(name = "ShelterInformation.findByP20007", query = "SELECT s FROM ShelterInformation s WHERE s.p20007 = :p20007"),
@@ -53,6 +56,9 @@ public class ShelterInformation implements Serializable {
     @Column(name = "ADDRESS")
     private String address;
     @Basic(optional = false)
+    @Column(name = "TYPE")
+    private String type;
+    @Basic(optional = false)
     @Column(name = "LATITUDE")
     private double latitude;
     @Basic(optional = false)
@@ -76,6 +82,8 @@ public class ShelterInformation implements Serializable {
     @Basic(optional = false)
     @Column(name = "P20_012")
     private short p20012;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "shelterInformation")
+    private ShelterInformationExt shelterInformationExt;
 
     public ShelterInformation() {
     }
@@ -84,11 +92,12 @@ public class ShelterInformation implements Serializable {
         this.geom = geom;
     }
 
-    public ShelterInformation(String geom, String administrativeAreaCode, String name, String address, double latitude, double longitude, short p20007, short p20008, short p20009, short p20010, short p20011, short p20012) {
+    public ShelterInformation(String geom, String administrativeAreaCode, String name, String address, String type, double latitude, double longitude, short p20007, short p20008, short p20009, short p20010, short p20011, short p20012) {
         this.geom = geom;
         this.administrativeAreaCode = administrativeAreaCode;
         this.name = name;
         this.address = address;
+        this.type = type;
         this.latitude = latitude;
         this.longitude = longitude;
         this.p20007 = p20007;
@@ -129,6 +138,14 @@ public class ShelterInformation implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public double getLatitude() {
@@ -193,6 +210,14 @@ public class ShelterInformation implements Serializable {
 
     public void setP20012(short p20012) {
         this.p20012 = p20012;
+    }
+
+    public ShelterInformationExt getShelterInformationExt() {
+        return shelterInformationExt;
+    }
+
+    public void setShelterInformationExt(ShelterInformationExt shelterInformationExt) {
+        this.shelterInformationExt = shelterInformationExt;
     }
 
     @Override

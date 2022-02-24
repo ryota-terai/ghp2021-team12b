@@ -5,22 +5,23 @@
  */
 package ghp2021.ghp2021app.shelter;
 
-import ghp2021.ghp2021app.ejb.ShelterSearchEJB;
+import ghp2021.ghp2021app.ejb.ShelterInformationEJB;
 import ghp2021.ghp2021entity.ShelterInformation;
+import ghp2021.ghp2021entity.ShelterInformationExt;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import org.primefaces.PrimeFaces;
 
 /**
  *
  * @author Ryota-Terai
  */
-@Named(value = "shelterSearchBean")
-@ViewScoped
 public class ShelterSearchBean implements Serializable {
 
     /**
@@ -60,13 +61,18 @@ public class ShelterSearchBean implements Serializable {
 
     private List<ShelterSearchResult> shelters;
 
+    private ShelterSearchResult selectedShelter;
+
     @Inject
-    private ShelterSearchEJB searchEJB;
+    private ShelterInformationEJB searchEJB;
 
     /**
      * Creates a new instance of ShelterSearchBean
      */
     public ShelterSearchBean() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext exContext = context.getExternalContext();
+        administrativeAreaCode = exContext.getInitParameter("GHP2021App_areaCode");
         this.p20_007 = true;
         this.p20_008 = true;
         this.p20_009 = true;
@@ -140,13 +146,24 @@ public class ShelterSearchBean implements Serializable {
         return shelters;
     }
 
+    public ShelterSearchResult getSelectedShelter() {
+        return selectedShelter;
+    }
+
+    public void setSelectedShelter(ShelterSearchResult selectedShelter) {
+        this.selectedShelter = selectedShelter;
+    }
+
     public void search() {
-        List<ShelterInformation> shelterInformationList = searchEJB.search(administrativeAreaCode, p20_007, p20_008, p20_009, p20_010, p20_011);
+        List<ShelterInformation> shelterInformationList = searchEJB.search(administrativeAreaCode, p20_007, p20_008, p20_009, p20_010, p20_011, null);
         shelters.clear();
         for (ShelterInformation shelterInformation : shelterInformationList) {
-            ShelterSearchResult result = new ShelterSearchResult(shelterInformation.getAdministrativeAreaCode(),
+            ShelterInformationExt ext = shelterInformation.getShelterInformationExt();
+            ShelterSearchResult result = new ShelterSearchResult(shelterInformation.getGeom(),
+                    shelterInformation.getAdministrativeAreaCode(),
                     shelterInformation.getName(),
                     shelterInformation.getAddress(),
+                    shelterInformation.getType(),
                     shelterInformation.getLatitude(),
                     shelterInformation.getLongitude(),
                     shelterInformation.getP20007() != 0,
@@ -156,9 +173,19 @@ public class ShelterSearchBean implements Serializable {
                     shelterInformation.getP20011() != 0,
                     shelterInformation.getP20012() != 0,
                     (int) Math.ceil(Math.random() * 100),
-                    (int) Math.ceil(Math.random() * 100));
+                    (int) Math.ceil(Math.random() * 100),
+                    ext != null ? ext.getOpen() == 1 : false,
+                    ext != null ? ext.getComment() : null);
 
             shelters.add(result);
         }
+    }
+
+    public void saveShelter() {
+        searchEJB.upateShelterInformationExt(selectedShelter.getGeom(), selectedShelter.isOpen(), selectedShelter.getComment());
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("避難所情報を更新しました"));
+
+        PrimeFaces.current().executeScript("PF('manageShelterDialog').hide()");
+        PrimeFaces.current().ajax().update("messages", "form2:tbl");
     }
 }

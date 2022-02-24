@@ -7,6 +7,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <body>
@@ -14,10 +15,15 @@ and open the template in the editor.
             <div class="card">
                 <h:form>
                     <p:growl id="messages"/>
-
                     <p:menubar>
-                        <p:menuitem value="ホーム" icon="pi pi-fw pi-arrow-circle-left" url="#{request.contextPath}/index.html"/>
-                        <p:menuitem value="避難所一覧" icon="pi pi-fw pi-home" url="#{request.contextPath}/faces/shelter/index.xhtml"/>
+                        <p:menuitem value="わかりやすい避難地図" icon="pi pi-fw pi-map" url="#{request.contextPath}/index.html?areaCode=#{initParam.GHP2021App_areaCode}"/>
+                        <p:divider layout="vertical"/>
+                        <!--<p:menuitem value="トップ" icon="pi pi-fw pi-map" url="#{request.contextPath}/faces/index.xhtml"/>-->
+                        <p:submenu label="避難所" icon="pi pi-fw pi-home">
+                            <p:menuitem value="一覧" icon="pi pi-fw pi-list" url="#{request.contextPath}/faces/shelter/index.xhtml"/>
+                            <p:menuitem value="設定" icon="pi pi-fw pi-database" url="#{request.contextPath}/faces/shelter/setup.xhtml"/>
+                        </p:submenu>
+
 
                         <p:submenu label="災害情報" icon="pi pi-fw pi-comments">
                             <p:menuitem value="投稿" icon="pi pi-fw pi-comment" url="#{request.contextPath}/faces/post/post/index.xhtml"/>

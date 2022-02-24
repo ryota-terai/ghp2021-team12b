@@ -11,16 +11,12 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 import javax.inject.Inject;
 
 /**
  *
  * @author r-terai
  */
-@Named(value = "postCheckBean")
-@ViewScoped
 public class CheckBean implements Serializable {
 
     private long id;

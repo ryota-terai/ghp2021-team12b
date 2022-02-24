@@ -29,7 +29,7 @@ public class PostInformationEJB implements PostInformationEJBLocal {
     @PersistenceContext(unitName = "GHP2021Entity")
     private EntityManager em;
 
-    private static final Logger LOG = Logger.getLogger(ShelterSearchEJB.class.getName());
+    private static final Logger LOG = Logger.getLogger(PostInformationEJB.class.getName());
 
     @Override
     public void postDisasterInformation(String latitude, String longtitude, String information, byte[] file) {

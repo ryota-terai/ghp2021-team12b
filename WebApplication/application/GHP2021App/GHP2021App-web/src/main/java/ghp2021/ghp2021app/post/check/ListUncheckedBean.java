@@ -8,16 +8,12 @@ package ghp2021.ghp2021app.post.check;
 import ghp2021.ghp2021app.ejb.PostInformationEJB;
 import ghp2021.ghp2021entity.PostInformation;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
  * @author r-terai
  */
-@Named(value = "listUncheckedBean")
-@RequestScoped
 public class ListUncheckedBean {
 
     private List<PostInformation> postedInformation;

@@ -32,9 +32,9 @@ public class PostInformationGeoJsonBean {
     @PersistenceContext(unitName = "GHP2021Entity")
     private EntityManager em;
 
-    private static final Logger LOG = Logger.getLogger(ShelterSearchEJB.class.getName());
+    private static final Logger LOG = Logger.getLogger(PostInformationGeoJsonBean.class.getName());
 
-    public String getDisasterInformationGeoJson() {
+    public FeatureCollection getDisasterInformationGeoJson() {
         List<PostInformation> approvedInformation = em.createNamedQuery("PostInformation.findByApproved", PostInformation.class)
                 .setParameter("approved", 1)
                 .getResultList();
@@ -53,9 +53,7 @@ public class PostInformationGeoJsonBean {
                 features.add(feature);
             }
         }
-        FeatureCollection featureCollection = FeatureCollection.fromFeatures(features);
-
-        return featureCollection.toJson();
+        return FeatureCollection.fromFeatures(features);
     }
 
 }

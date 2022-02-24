@@ -8,11 +8,13 @@ package ghp2021.ghp2021entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Ryota-Terai
+ * @author r-terai
  */
 @Entity
 @Table(name = "POST_INFORMATION")
@@ -53,6 +55,8 @@ public class PostInformation implements Serializable {
     @Basic(optional = false)
     @Column(name = "APPROVED")
     private int approved;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "postInformation")
+    private File file;
 
     public PostInformation() {
     }
@@ -113,6 +117,14 @@ public class PostInformation implements Serializable {
 
     public void setApproved(int approved) {
         this.approved = approved;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 
     @Override

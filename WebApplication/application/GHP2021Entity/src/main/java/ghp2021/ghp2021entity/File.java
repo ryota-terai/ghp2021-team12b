@@ -10,9 +10,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -37,6 +39,9 @@ public class File implements Serializable {
     @Lob
     @Column(name = "FILE")
     private byte[] file;
+    @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private PostInformation postInformation;
 
     public File() {
     }
@@ -64,6 +69,14 @@ public class File implements Serializable {
 
     public void setFile(byte[] file) {
         this.file = file;
+    }
+
+    public PostInformation getPostInformation() {
+        return postInformation;
+    }
+
+    public void setPostInformation(PostInformation postInformation) {
+        this.postInformation = postInformation;
     }
 
     @Override

@@ -9,16 +9,12 @@ import ghp2021.ghp2021app.ejb.PostInformationEJB;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author r-terai
  */
-@Named(value = "pictureBean")
-@ViewScoped
 public class PictureBean implements Serializable {
 
     private long id;
