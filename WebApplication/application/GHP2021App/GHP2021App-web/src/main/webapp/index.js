@@ -25,7 +25,7 @@ const url = new URL(window.location.href);
 const params = url.searchParams;
 
 // getメソッド
-const areaCode = params.get('areaCode'); 
+const areaCode = params.get('areaCode');
 
 // 画面がロードされたら地図にレイヤを追加する
 map.on('load', function () {
@@ -110,8 +110,10 @@ map.on('click', 'shelter_point', function (e) {
     var coordinates = e.features[0].geometry.coordinates.slice();
     var name = e.features[0].properties.P20_002;
     var comment = e.features[0].properties.comment;
-    name += '<br>' + comment;
-    
+    if (comment != null) {
+        name += '<br>' + comment;
+    }
+
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
@@ -133,8 +135,11 @@ map.on('click', 'shelter_open_point', function (e) {
     var coordinates = e.features[0].geometry.coordinates.slice();
     var name = e.features[0].properties.P20_002;
     var comment = e.features[0].properties.comment;
-    name += '<br>避難所開設中<br>' + comment;
-    
+    name += '<br>避難所開設中';
+    if (comment != null) {
+        name += '<br>' + comment;
+    }
+
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }

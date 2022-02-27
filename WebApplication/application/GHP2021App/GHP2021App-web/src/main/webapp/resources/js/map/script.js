@@ -1,41 +1,52 @@
-let lat = 32.9328313249096; // 緯度
-let lon = 129.64286026888269; // 経度
+let lat = 32.986804; // 緯度
+let lon = 129.768337; // 経度
 let zoom = 16; // ズームレベル
 
-let version = "Y2020"; //地図バージョン
-let eqcase = "AVR"; // 確率ケース
-let eqcode = "TTL_MTTL"; //地震コード
-let format = "geojson"; // 出力形式
-let epsg = 4326; //測地系
-let attr = "T30_I60_PS"; //30年間で震度6強以上となる確率
+// ベースマップを作成する
+// ここでは3DのOpenStreetMapを表示する
+var map = new maplibregl.Map({
+    container: 'map',
+    style: '/GHP2021App/style_normal.json',
+    center: [lon, lat],
+    zoom: zoom,
+    hash: true,
+    pitch: 30,
+    localIdeographFontFamily: false
+});
 
 let marker;
-let map = L.map("map");
-
-if (document.getElementById("frm:latitude").value !== '' 
-        && document.getElementById("frm:longitude").value !== ''){
-  lat = document.getElementById("frm:latitude").value;
-  lon = document.getElementById("frm:longitude").value;
-  marker = L.marker([lat, lon]).addTo(map);
+if (document.getElementById("frm:latitude").value !== ''
+        && document.getElementById("frm:longitude").value !== '') {
+    lat = document.getElementById("frm:latitude").value;
+    lon = document.getElementById("frm:longitude").value;
+    marker = new maplibregl.Marker()
+            .setLngLat([lon, lat])
+            .addTo(map);
 }
 
-map.setView([lat, lon], zoom);
+map.setCenter([lon, lat]);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+// UIツール
+// 右下のズームレベルの＋−ボタンを表示する
+map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
+// 右上の現在位置の取得ボタンを表示する
+map.addControl(new maplibregl.GeolocateControl({positionOptions: {enableHighAccuracy: true}, trackUserLocation: true}), 'top-right');
+// 左下の尺度を表示する
+map.addControl(new maplibregl.ScaleControl());
+
 
 map.on("click", function (e) {
-  let lat = e.latlng.lat;
-  let lon = e.latlng.lng;
-  
-  if (marker){
-    map.removeLayer(marker);
-  }
-  marker = L.marker([lat, lon]).addTo(map);
-  
-  document.getElementById("frm:latitude").value = lat;
-  document.getElementById("frm:longitude").value = lon;
+    let lat = e.lngLat.lat;
+    let lon = e.lngLat.lng;
+
+    if (marker) {
+        map.removeLayer(marker);
+    }
+    marker = new maplibregl.Marker()
+            .setLngLat([lon, lat])
+            .addTo(map);
+
+    document.getElementById("frm:latitude").value = lat;
+    document.getElementById("frm:longitude").value = lon;
 
 });
