@@ -101,12 +101,15 @@ map.on('load', function () {
             'icon-size': 0.1
         }
     });
+
+    // 現在時刻を表示する
+    var viewTime = $("#view-time")[0];
+    viewTime.innerHTML = getNow();
+
 });
 
 // 避難所情報の地物をクリックしたときに、コメントを表示する
 map.on('click', 'shelter_point', function (e) {
-    console.log("click")
-
     var coordinates = e.features[0].geometry.coordinates.slice();
     var name = e.features[0].properties.P20_002;
     var comment = e.features[0].properties.comment;
@@ -203,10 +206,20 @@ map.on('mouseleave', 'disaster', function () {
     map.getCanvas().style.cursor = '';
 });
 
-/* // チェックボックスのオンオフでレイヤの表示/非表示を切り替える
- 
- $(#shelter-layer).click(function(){
- if(!$(this).prop('checked')){
- map.removeLayer('shelter_point');
- }
- }); */
+function getNow() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var mon = now.getMonth() + 1;
+    var day = now.getDate();
+    var hour = now.getHours();
+    var min = now.getMinutes();
+
+    //出力用
+    var currentTime = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分";
+    return currentTime;
+}
+
+// 印刷ボタンが押されたら印刷画面を表示する
+$('#print-button').on('click', function () {
+    window.print();
+});
