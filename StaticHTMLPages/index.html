@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>3Dハザードマップ</title>
-    <meta name="description" content="ハザードマップです">
+    <title>わかりやすい避難地図</title>
+    <meta name="description" content="西海市の避難地図です">
     <link href="style.css" rel="stylesheet">
     <!-- MapLibre -->
     <link href="https://unpkg.com/maplibre-gl@2.1.1/dist/maplibre-gl.css" rel="stylesheet" />
@@ -16,7 +16,8 @@
 <body>
     <!-- ヘッダー -->
     <div id="header">
-        <h2 id="header-title">わかりやすい避難地図</h2>
+        <div id="header-title"><h2>わかりやすい避難地図</h2></div>
+        <div id="print-button"><button class="circular ui compact icon green button"><i class="print icon"></i></button></div>
     </div>
     <!-- 地図 -->
     <div id="map-area">
@@ -38,34 +39,15 @@
                 <div class="content">
                     <div class="header"><span id="shelter-info-title">西海市からのお知らせ</span></div>
                     <p id="shelter-info-comment">この近くの避難所は、「<span id="shelter-name"></span>」です。こちらの避難所に避難してください！</p>
-                    <div style="font-size: 18px;">
-                        こちらは <span id="view_time"></span> 時点での情報です。
-                        <script type="text/javascript">
-                            document.getElementById("view_time").innerHTML = getNow();
-
-                            function getNow() {
-                                var now = new Date();
-                                var year = now.getFullYear();
-                                var mon = now.getMonth() + 1; //１を足すこと
-                                var day = now.getDate();
-                                var hour = now.getHours();
-                                var min = now.getMinutes();
-
-                                //出力用
-                                var s = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分";
-                                return s;
-                            }
-                        </script>
-                    </div>
-
+                    <p id="view-info">こちらは <span id="view-time"></span> 時点の情報です。</p>
                 </div>
             </div>
         </div>
-        <div class="wrap">
-            <div class="hanrei"><img src="data/gake.png" width="100" height="150" alt="土砂災害警戒区域急傾斜地の崩壊" /></div>
-            <div class="hanrei"><img src="data/dosekiryu.png" width="100" height="150" alt="土砂災害特別警戒区域土石流" /></div>
-            <div class="hanrei"><img src="data/zisuberi.png" width="100" height="150" alt="土砂災害特別警戒区域地滑り" /> </div>
-            <div class="hanrei"><img src="data/shinsui.png" width="100" height="150" alt="洪水浸水想定区域の深さ"></div>
+        <div id="hanrei-info">
+            <img class="hanrei-image" src="data/gake.png" alt="土砂災害警戒区域急傾斜地の崩壊" />
+            <img class="hanrei-image" src="data/dosekiryu.png" alt="土砂災害特別警戒区域土石流" />
+            <img class="hanrei-image" src="data/zisuberi.png" alt="土砂災害特別警戒区域地滑り" />
+            <img class="hanrei-image" src="data/shinsui.png"  alt="洪水浸水想定区域の深さ">
         </div>
     </div>
     <script src="index.js"></script>

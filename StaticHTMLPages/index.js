@@ -35,7 +35,6 @@ map.on('load', function () {
             map.addImage('shelter_icon', image);
         }
     );
-
     map.addLayer({
         'id': 'shelter_point',
 		'type': 'symbol',
@@ -53,7 +52,6 @@ map.on('load', function () {
         type: 'geojson',
         data: './data/disaster.geojson'
     });
-
     map.loadImage(
         './img/comment.png',
         function (error, image) {
@@ -61,8 +59,6 @@ map.on('load', function () {
             map.addImage('comment_icon', image);
         }
     );
-
-    // スタイルを設定
     map.addLayer({
         'id': 'disaster',
 		'type': 'symbol',
@@ -72,12 +68,15 @@ map.on('load', function () {
 		'icon-size': 0.1
         }   
     });
+
+    // 現在時刻を表示する
+    var viewTime = $("#view-time")[0];
+    viewTime.innerHTML = getNow();
+
 });
 
 // 避難所情報の地物をクリックしたときに、コメントを表示する
 map.on('click', 'shelter_point', function (e) {
-    console.log("click")
-    
     var coordinates = e.features[0].geometry.coordinates.slice();
     var name = e.features[0].properties.name;
      
@@ -138,10 +137,20 @@ map.on('mouseleave', 'disaster', function () {
     map.getCanvas().style.cursor = '';
 });
 
-/* // チェックボックスのオンオフでレイヤの表示/非表示を切り替える
+function getNow() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var mon = now.getMonth() + 1;
+    var day = now.getDate();
+    var hour = now.getHours();
+    var min = now.getMinutes();
 
-$(#shelter-layer).click(function(){
-    if(!$(this).prop('checked')){
-        map.removeLayer('shelter_point');
-    }
-}); */
+    //出力用
+    var currentTime = year + "年" + mon + "月" + day + "日" + hour + "時" + min + "分";
+    return currentTime;
+}
+
+// 印刷ボタンが押されたら印刷画面を表示する
+$('#print-button').on('click', function() {
+    window.print();
+});
