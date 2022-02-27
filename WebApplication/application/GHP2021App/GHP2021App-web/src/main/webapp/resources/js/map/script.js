@@ -40,7 +40,7 @@ map.on("click", function (e) {
     let lon = e.lngLat.lng;
 
     if (marker) {
-        map.removeLayer(marker);
+        marker.remove();
     }
     marker = new maplibregl.Marker()
             .setLngLat([lon, lat])
