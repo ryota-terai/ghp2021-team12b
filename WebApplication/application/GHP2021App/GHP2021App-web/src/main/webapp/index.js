@@ -32,7 +32,7 @@ map.on('load', function () {
     // 避難所情報レイヤを追加
     map.addSource('shelter_point', {
         type: 'geojson',
-        data: '/GHP2021App/webresources/rest/shelterInfo?areaCode=' + areaCode + '&P20_007=1&P20_008=1&P20_009=1&P20_010=1&P20_011=1&open=false'
+        data: '/GHP2021App/webresources/rest/shelterInfo?areaCode=' + areaCode + '&P20_007=true&P20_008=true&P20_009=true&P20_010=true&P20_011=true&open=false'
     });
     map.loadImage(
             './img/shelter.png',
@@ -55,7 +55,7 @@ map.on('load', function () {
 
     map.addSource('shelter_open_point', {
         type: 'geojson',
-        data: '/GHP2021App/webresources/rest/shelterInfo?areaCode=' + areaCode + '&P20_007=1&P20_008=1&P20_009=1&P20_010=1&P20_011=1&open=true'
+        data: '/GHP2021App/webresources/rest/shelterInfo?areaCode=' + areaCode + '&P20_007=true&P20_008=true&P20_009=true&P20_010=true&P20_011=true&open=true'
     });
     map.loadImage(
             './img/shelter_open.png',
@@ -139,6 +139,13 @@ map.on('click', 'shelter_open_point', function (e) {
     var name = e.features[0].properties.P20_002;
     var comment = e.features[0].properties.comment;
     name += '<br>避難所開設中';
+    name += '<br><a href=\"https://www.google.com/maps/dir/?api=1&destination='
+            + e.features[0].geometry.coordinates.slice()[1]
+            + ','
+            + e.features[0].geometry.coordinates.slice()[0]
+            + '\" target=\"_blank\">'
+            + '避難所迄のルートを検索</a>';
+
     if (comment != null) {
         name += '<br>' + comment;
     }
